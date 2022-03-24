@@ -1,0 +1,12 @@
+name: Lio né
+skills:
+  c: 45
+  c++: 39
+  java: 100
+experience:
+  Amazon:
+    start: 2010
+    end: 2012
+    keywords:
+      - c
+      - java

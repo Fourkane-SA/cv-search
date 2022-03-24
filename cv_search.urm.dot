@@ -1,0 +1,32 @@
+digraph domain {
+  edge [ fontsize = 11 ];
+  node [ shape=record ];
+  subgraph cluster_0 {
+    label = "fr.univ_lyon1.info.m1.cv_search.view";
+    JfxView [ label = "{JfxView | + createChoiceBox() : Node\l+ createCurrentSearchSkillsWidget() : Node\l+ createNewSkillWidget() : Node\l+ createRestoreButton() : Node\l+ createResultsWidget() : Node\l+ createSearchWidget(combo : ComboBox<T>) : Node\l+ getResultBox() : VBox\l+ getSearchSkillsBox() : HBox\l+ refreshView()\l+ setResultBox(resultBox : VBox)\l+ setSearchSkillsBox(searchSkillsBox : HBox)\l}" ] 
+  }
+  subgraph cluster_1 {
+    label = "fr.univ_lyon1.info.m1.cv_search.model";
+    Applicant [ label = "{Applicant | + addExperience(exp : Experience)\l+ getExperiences() : List<Experience>\l+ getName() : String\l+ getSkill(string : String) : int\l+ getSkills() : Map<String, Integer>\l+ getYearsOfExperience(keyword : String) : int\l+ inkeywords(keyword : String) : Boolean\l+ listOfKeywords() : List<String>\l+ setName(name : String)\l+ setSkill(string : String, value : int)\l+ toString() : String\l}" ] 
+    ApplicantBuilder [ label = "{ApplicantBuilder | + build() : Applicant\l}" ] 
+    ApplicantList [ label = "{ApplicantList | + add(a : Applicant)\l+ clear()\l+ getList() : List<Applicant>\l+ iterator() : Iterator<Applicant>\l+ setList(list : ApplicantList)\l+ size() : int\l}" ] 
+    ApplicantListBuilder [ label = "{ApplicantListBuilder | + build() : ApplicantList\l}" ] 
+    Experience [ label = "{Experience | + getEnd() : int\l+ getKeywords() : List<String>\l+ getName() : String\l+ getStart() : int\l+ setEnd(end : int)\l+ setKeywords(keywords : List<String>)\l+ setName(name : String)\l+ setStart(start : int)\l+ toString() : String\l}" ] 
+    Strategy [ label = "{Strategy | + addStrategy(strategy : String)\l+ getListOfStrategy() : List<String>\l}" ] 
+    StrategyValue [ label = "{StrategyValue | + getStrategy(Integer) : Integer\l+ strategy50(a : Applicant, listSkills : List<String>) : StrategyValue\l+ strategy50Moyenne(a : Applicant, listSkills : List<String>) : StrategyValue\l+ strategy60(a : Applicant, listSkills : List<String>) : StrategyValue\l+ strategyYearsexperience(a : Applicant, listKeywords : List<String>) : StrategyValue\l}" ] 
+  }
+  subgraph cluster_2 {
+    label = "fr.univ_lyon1.info.m1.cv_search.controller";
+    Caretaker [ label = "{Caretaker | + addMemento(m : Memento)\l+ getMemento() : Memento\l}" ] 
+    Controller [ label = "{Controller | + addListSkills(skill : String)\l+ addListView(listViews : JfxView)\l+ getListOfStrategy() : List<String>\l+ getListSkills() : List<String>\l+ getListView() : List<JfxView>\l+ getResultsSkills(choice : String) : List<String>\l+ notifyView()\l+ restoreController()\l+ saveListSkills()\l+ setListSkills(listSkills : List<String>)\l}" ] 
+    Memento [ label = "{Memento | + getListSkills() : List<String>\l+ toString() : String\l}" ] 
+    Originator [ label = "{Originator | + restore(m : Memento) : List<String>\l+ save() : Memento\l+ setListSkills(listSkills : List<String>)\l}" ] 
+  }
+  ApplicantList -> Applicant [ dir=back arrowtail=odiamond color=slategray];
+  Controller -> Originator [ dir=back arrowtail=odiamond color=slategray];
+  Caretaker -> Memento [ dir=back arrowtail=odiamond color=slategray];
+  Applicant -> Experience [ dir=back arrowtail=odiamond color=slategray];
+  Controller -> Caretaker [ dir=back arrowtail=odiamond color=slategray];
+  Controller -> Strategy [ dir=back arrowtail=odiamond color=slategray];
+  Controller -> JfxView [ dir=both arrowhead=none arrowtail=none color=slategray];
+}
